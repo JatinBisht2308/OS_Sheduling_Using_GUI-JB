@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46362eaa-c6e7-4277-a6e7-b0ff5d847115" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/FinalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/FinalFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/InputFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/InputFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FinalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalFrame.java" afterDir="false" />

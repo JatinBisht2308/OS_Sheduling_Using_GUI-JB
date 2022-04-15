@@ -8,15 +8,15 @@ public class InputFrame implements ActionListener {
     JTextField arrival;
     JTextField burst;
     JButton solve;
-    InputFrame()
 
+    InputFrame()
     {
 //        JFrame -> Jatin's Frame
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400,450);
 
-        String[] algorithm = {"First Come First Serve (FCFS)","Shortest Job First (SJF)"};
+        String[] algorithm = {"First Come First Serve (FCFS)","Shortest Job First Preemptive(SJF-P)","Shortest Job First Non Preemptive (SJF-NP)"};
         comboBox = new JComboBox(algorithm);
 
         frame.getContentPane().setBackground(new Color(230, 230, 230));
@@ -76,16 +76,15 @@ public class InputFrame implements ActionListener {
 //    override
     public void actionPerformed(ActionEvent e)
     {
+        int index = comboBox.getSelectedIndex();
 //      checking for the combo box
-        if(e.getSource() == comboBox)
-        {
-            System.out.println(comboBox.getSelectedItem());
-
-        }
         if(e.getSource() == solve)
         {
-//            this will generate the new window
-            FinalFrame output = new FinalFrame();
+//            System.out.println(comboBox.getSelectedItem());
+//            System.out.println(index);
+//           arrival.getText();
+//           burst.getText();
+            FinalFrame output = new FinalFrame(index,arrival.getText(),burst.getText());
         }
     }
 }
