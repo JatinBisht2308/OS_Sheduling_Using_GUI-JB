@@ -80,10 +80,6 @@ public class InputFrame implements ActionListener {
 //      checking for the combo box
         if(e.getSource() == solve)
         {
-//            System.out.println(comboBox.getSelectedItem());
-//            System.out.println(index);
-//           arrival.getText();
-//           burst.getText();
             FinalFrame output = new FinalFrame(index,arrival.getText(),burst.getText());
         }
     }
