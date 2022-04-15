@@ -42,6 +42,7 @@ public class InputFrame implements ActionListener {
         bt.setFont(new Font(null,Font.CENTER_BASELINE,15));
         comboBox.setBackground(new Color(215, 245, 255));
         comboBox.setForeground(Color.BLACK);
+        comboBox.addActionListener(this);
 //        TextFeild for arrival time
         arrival = new JTextField();
 //        arrival.setFocusable(false);
@@ -61,6 +62,7 @@ public class InputFrame implements ActionListener {
         solve.setBounds(20,320,90,40);
         solve.setBackground(new Color(100, 180, 255));
         solve.setForeground(Color.white);
+        solve.addActionListener(this);
         frame.add(solve);
         frame.add(arrival);
         frame.add(burst);
@@ -74,6 +76,16 @@ public class InputFrame implements ActionListener {
 //    override
     public void actionPerformed(ActionEvent e)
     {
+//      checking for the combo box
+        if(e.getSource() == comboBox)
+        {
+            System.out.println(comboBox.getSelectedItem());
 
+        }
+        if(e.getSource() == solve)
+        {
+//            this will generate the new window
+            FinalFrame output = new FinalFrame();
+        }
     }
 }
