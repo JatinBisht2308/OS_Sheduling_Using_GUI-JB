@@ -1,25 +1,19 @@
 import javax.swing.*;
-import javax.swing.border.*;
+//import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.table.*;
 public class FCFS {
     JFrame frame;// used to making the frame``
     JLabel output;//used for the heading of the frame
     JLabel fcfs; // used to tell that which algo is using at the top right side of the frame
     JLabel ganttChart;// used to write the gantChart above the gantt chart diagram
-    JLabel Average;//used to find the average of tat and wt
+//    JLabel Average;//used to find the average of tat and wt
     FCFS(int[] arrival,int[] burst)
     {
 //        specify the number of rows and columns in the table and the gantt chart
-        int rowInTable = arrival.length;//row will be same for gantt chart and table
+//        int rowInTable = arrival.length;//row will be same for gantt chart and table
         int columnInGanttChart = arrival.length;
-        int column = 6;
-
-        int[] finishTimeArray = new int[arrival.length];
-        int[] waitingTimeArray = new int[arrival.length];
-        int[] turnaroundTimeArray = new int[arrival.length];
+//        int column = 6;
 
 //        Making the frame know
         frame = new JFrame();
@@ -30,7 +24,7 @@ public class FCFS {
 //        Making panel for the gant chat
         JPanel gantChartPanel = new JPanel();
         gantChartPanel.setBounds(100,100,300,50);
-        gantChartPanel.setLocation(145,100);
+        gantChartPanel.setLocation(200,100);
         gantChartPanel.setLayout(new GridLayout(1,columnInGanttChart,0,0));
         gantChartPanel.setBackground(new Color(215, 245, 255));
         gantChartPanel.setForeground(Color.BLACK);
@@ -51,7 +45,7 @@ public class FCFS {
         output.setFont(new Font(null,Font.BOLD,35));
 //        writing gantt chart above the grid layout
         ganttChart = new JLabel("Gantt Chart");
-        ganttChart.setBounds(220,65,200,30);
+        ganttChart.setBounds(270,65,200,30);
         ganttChart.setFont(new Font("Courier",Font.PLAIN,30));
 //        adding panel for the algorithm
         fcfs = new JLabel("FCFS");
@@ -67,7 +61,7 @@ public class FCFS {
               String str = Integer.toString(finish[i]);
 //              str+="                                           ";
               JLabel ft = new JLabel(str);
-              int start = 135 + (i*60);
+              int start = 190 + (i*60);
               ft.setBounds(start,145,300,30);
               ft.setFont(new Font(null,Font.PLAIN,13));
               frame.add(ft);
@@ -78,7 +72,7 @@ public class FCFS {
 //          table.setBounds();
           table.setFont(new Font(null,Font.BOLD,15));
           table.setBackground(new Color(215, 245, 255));
-          table.setBounds(100,100,700,450);
+          table.setBounds(100,100,700,480);
           table.setRowHeight(30);
           table.setFocusable(false);
 
@@ -99,16 +93,33 @@ public class FCFS {
         tableModel.addColumn("Finish Time");
         tableModel.addColumn("Turnaround Time");
         tableModel.addColumn("Waiting Time");
+//        Getting the values of turnaround array
+        int[] turnAround = turnaroundTime(finish,arrival);
+//        getting the values of waiting time
+        int[] waiting = waitingTime(turnAround,burst);
 //        Adding values to the column
         for(int i=0;i<arrival.length;i++)
         {
+//            selecting the job
+            char ch = (char)(65+i);
+            String str1 = Character.toString(ch);
+//            value of arrival time
+            String str2 = Integer.toString(arrival[i]);
+//            value of burst time
+            String str3 = Integer.toString(burst[i]);
+//           value of finish time
+            String str4 = Integer.toString(finish[i+1]);
+//            value of Turnaround Time
+            String str5 = Integer.toString(turnAround[i]);
+//            value of Waiting time
+            String str6 = Integer.toString(waiting[i]);
             tableModel.addRow(new Object[0]);
-            tableModel.setValueAt("A",i,0);
-            tableModel.setValueAt("A",i,1);
-            tableModel.setValueAt("A",i,2);
-            tableModel.setValueAt("A",i,3);
-            tableModel.setValueAt("A",i,4);
-            tableModel.setValueAt("A",i,5);
+            tableModel.setValueAt(str1,i,0);
+            tableModel.setValueAt(str2,i,1);
+            tableModel.setValueAt(str3,i,2);
+            tableModel.setValueAt(str4,i,3);
+            tableModel.setValueAt(str5,i,4);
+            tableModel.setValueAt(str6,i,5);
         }
 //        set the column width for each column
         table.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -146,13 +157,22 @@ public class FCFS {
        return finish;
     }
 //    FIND WAITING TIME
-    public void waitingTime()
-    {
-
+    public int[] waitingTime(int[]turnAround,int[] burst) {
+        int[] wait = new int[turnAround.length];
+        for (int i = 0; i < wait.length;i++)
+        {
+            wait[i] = turnAround[i] - burst[i];
+        }
+        return wait;
     }
 //    FIND TURNAROUND TIME
-    public void turnaroundTime()
+    public int[] turnaroundTime(int[] finish,int[] arrival )
     {
-
+     int[] tat = new int[arrival.length];
+     for(int i=0;i<tat.length;i++)
+     {
+         tat[i] = finish[i+1] - arrival[i];
+     }
+     return tat;
     }
 }
