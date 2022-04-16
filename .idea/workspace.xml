@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="46362eaa-c6e7-4277-a6e7-b0ff5d847115" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/FinalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/FinalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/InputFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/InputFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/FCFS.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OS_Sheduling_Algorithm_Project/FCFS.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FCFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FCFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LearningGui/src/com/java/guiLearn/ComboBox.java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

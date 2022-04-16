@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 public class FCFS {
@@ -25,20 +26,47 @@ public class FCFS {
         frame.setLayout(null);
 //        Making panel for the gant chat
         JPanel gantChartPanel = new JPanel();
-        gantChartPanel.setBounds(100,40,150,50);
+        gantChartPanel.setBounds(100,100,300,50);
+        gantChartPanel.setLocation(145,100);
         gantChartPanel.setLayout(new GridLayout(1,columnInGanttChart,0,0));
+        gantChartPanel.setBackground(new Color(215, 245, 255));
+        gantChartPanel.setForeground(Color.BLACK);
 //        making buttons in the gantt chart
         for(int i=0;i<columnInGanttChart;i++)
         {
-            gantChartPanel.add(new JButton(String.valueOf(i+1)));
+            char ch = (char)(65+i);
+            JButton button = new JButton(String.valueOf(ch));
+            button.setBackground(new Color(215, 245, 255));
+            button.setFocusable(false);
+            gantChartPanel.add(button);
         }
-//        frame.add(ganttChart);
+//        making the label for the heading output
+        output = new JLabel("Output");
+        output.setForeground(Color.BLACK);
+        output.setBounds(35,10,200,50);
+        output.setFont(new Font(null,Font.BOLD,40));
+//        writing gantt chart above the grid layout
+        ganttChart = new JLabel("Gantt Chart");
+        ganttChart.setBounds(220,65,200,30);
+        ganttChart.setFont(new Font("Courier",Font.PLAIN,30));
+//        adding panel for the algorithm
+        fcfs = new JLabel("FCFS");
+        fcfs.setBounds(535,12,50,30);
+        fcfs.setFont(new Font(null,Font.BOLD,15));
+        fcfs.setForeground(new Color(40, 220, 255));
+
+//        ------------------------------------------------------------------------
+//        Now making the values for the finish time in the gant chart
+
+//        ------------------------------------------------------------------------
+        frame.add(fcfs);
+        frame.add(ganttChart);
+         frame.add(output);
         frame.add(gantChartPanel);
-        frame.pack();
         frame.setVisible(true);
     }
 //    FIND FINISH TIME
-    public void finishTime()
+    public void finishTime(int[] arrival,int[] burst)
     {
 
     }
