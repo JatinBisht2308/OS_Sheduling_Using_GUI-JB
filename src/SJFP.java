@@ -138,11 +138,6 @@ public class SJFP {
         table.getColumnModel().getColumn(1).setPreferredWidth(20);
         table.getColumnModel().getColumn(2).setPreferredWidth(15);
         table.getColumnModel().getColumn(3).setPreferredWidth(17);
-//        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-//        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
-//        table.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
-//         tablePanel.setFocusable(false);
-//        scrollPane.add(table)
         frame.setSize(700,500);
         tablePanel.add(scrollPane);
         frame.add(tablePanel);

@@ -26,8 +26,6 @@ public class InputFrame implements ActionListener {
         input.setForeground(Color.BLACK);
         input.setBounds(30,10,100,50);
         input.setFont(new Font(null,Font.BOLD,40));
-//        input.setVisible(true);
-//        frame.pack();
         JLabel algo = new JLabel("Algorithm");
         algo.setBounds(25,70,90,30);
         algo.setFont(new Font(null,Font.CENTER_BASELINE,15));
@@ -63,6 +61,8 @@ public class InputFrame implements ActionListener {
         solve.setBackground(new Color(100, 180, 255));
         solve.setForeground(Color.white);
         solve.addActionListener(this);
+//        Adding the average of waiting and turnaround time
+
         frame.add(solve);
         frame.add(arrival);
         frame.add(burst);
@@ -80,7 +80,7 @@ public class InputFrame implements ActionListener {
 //      checking for the combo box
         if(e.getSource() == solve)
         {
-            FinalFrame output = new FinalFrame(index,arrival.getText(),burst.getText());
+            new FinalFrame(index,arrival.getText(),burst.getText());
         }
     }
 }
