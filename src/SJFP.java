@@ -139,6 +139,35 @@ public class SJFP {
         table.getColumnModel().getColumn(2).setPreferredWidth(15);
         table.getColumnModel().getColumn(3).setPreferredWidth(17);
         frame.setSize(700,500);
+        //        Adding the average of waiting and turnaround time
+        JLabel avg = new JLabel("Average");
+        avg.setFont(new Font(null,Font.PLAIN,14));
+        avg.setBounds(300,370,100,30);
+
+        //        getting the average waitning time
+        int waitSum = 0;
+        for(int i=0;i<waiting.length;i++)
+        {
+            waitSum+=waiting[i];
+        }
+        int waitAvg = waitSum/waiting.length;
+//        getting the turnaround average
+        int tatSum = 0;
+        for(int i=0;i<turnAround.length;i++)
+        {
+            tatSum+=turnAround[i];
+        }
+        int tatAvg = tatSum/turnAround.length;
+//        Making 2 labels to  add the waitAvg and tatAvg
+        JLabel tA = new JLabel(tatSum+"/"+ turnAround.length+" = "+tatAvg);
+        tA.setFont(new Font(null,Font.PLAIN,14));
+        tA.setBounds(375,370,100,30);
+        JLabel wA = new JLabel(waitSum+"/"+ waiting.length+" = "+waitAvg);
+        wA.setFont(new Font(null,Font.PLAIN,14));
+        wA.setBounds(510,370,100,30);
+        frame.add(tA);
+        frame.add(wA);
+        frame.add(avg);
         tablePanel.add(scrollPane);
         frame.add(tablePanel);
         frame.add(sjfp);

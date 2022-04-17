@@ -20,7 +20,7 @@ public class FinalFrame {
 //        Calling fcfs class
          new FCFS(arrivalArray,burstArray);
         }
-        if(index!=0 && index!=1) {//            converting the arrival string to arrival integer array - jatin bisht
+        if(index==1) {//            converting the arrival string to arrival integer array - jatin bisht
             String[] arrivalStringArray = arrival.split(" ");
             int[] arrivalArray = new int[arrivalStringArray.length];
             for (int i = 0; i < arrivalArray.length; i++) {
@@ -35,7 +35,7 @@ public class FinalFrame {
 //            calling SJF-P
             new SJFP(arrivalArray,burstArray);
         }
-        if(index==1)
+        if(index==2)
         {
             // converting the arrival string to arrival integer array - jatin bisht
             String[] arrivalStringArray = arrival.split(" ");

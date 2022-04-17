@@ -61,8 +61,6 @@ public class InputFrame implements ActionListener {
         solve.setBackground(new Color(100, 180, 255));
         solve.setForeground(Color.white);
         solve.addActionListener(this);
-//        Adding the average of waiting and turnaround time
-
         frame.add(solve);
         frame.add(arrival);
         frame.add(burst);
