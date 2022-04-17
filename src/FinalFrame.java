@@ -23,23 +23,19 @@ public class FinalFrame {
 //        Calling fcfs class
           FCFS fcfs = new FCFS(arrivalArray,burstArray);
         }
-        else if(index == 1)
-        {
-            //            converting the arrival string to arrival integer array - jatin bisht
+        else if(index == 1) {//            converting the arrival string to arrival integer array - jatin bisht
             String[] arrivalStringArray = arrival.split(" ");
             int[] arrivalArray = new int[arrivalStringArray.length];
-            for(int i=0;i<arrivalArray.length;i++)
-            {
+            for (int i = 0; i < arrivalArray.length; i++) {
                 arrivalArray[i] = Integer.parseInt(arrivalStringArray[i]);
             }
 //            converting the burst string to burst array - jatin bisht
             String[] burstStringArray = burst.split(" ");
             int[] burstArray = new int[burstStringArray.length];
-            for(int i=0;i<burstArray.length;i++)
-            {
+            for (int i = 0; i < burstArray.length; i++) {
                 burstArray[i] = Integer.parseInt(burstStringArray[i]);
             }
-//        Calling SJF P class
+//            calling SJF-P
             SJFP sjfp = new SJFP(arrivalArray,burstArray);
         }
         else
