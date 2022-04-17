@@ -1,5 +1,4 @@
 import javax.swing.*;
-//import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 public class SJFP {
@@ -107,9 +106,9 @@ public class SJFP {
         tableModel.addColumn("Turnaround Time");
         tableModel.addColumn("Waiting Time");
 //        Getting the values of turnaround array
-        int[] turnAround = turnaroundTime(finish,arrival);
+        int[] turnAround = turnaroundTime(arrival,burst);
 //        getting the values of waiting time
-        int[] waiting = waitingTime(turnAround,burst);
+        int[] waiting = waitingTime(arrival,burst);
 //        Adding values to the column
         for(int i=0;i<arrival.length;i++)
         {
@@ -153,135 +152,180 @@ public class SJFP {
         frame.add(gantChartPanel);
         frame.setVisible(true);
     }
-//    making a different class
-    public class processMaker
-{
-        int pId;
-        int bt;
-        int art;
-        public processMaker(int pId,int bt,int art)
-        {
-            this.pId = pId;
-            this.art = art;
-            this.bt = bt;
-        }
-}
-class JatinSolutionBuilder
-{
-    static void findWaitingTime(Process proc[], int n,int wt[])
-    {
-        int rt[] = new int[n];
+     public int[] finishTime(int[] at,int[] bt)
+     {
+         int n = at.length;
+         int[] pid = new int[n];
+         int ct[] = new int[n]; // ct means complete time
+         int ta[] = new int[n];// ta means turn around time
+         int wt[] = new int[n];  // wt means waiting time
+         int f[] = new int[n];  // f means it is flag it checks process is completed or not
+         int k[]= new int[n];   // it is also stores brust time
+         int i, st=0, tot=0;
+         float avgwt=0, avgta=0;
 
-        // Copy the burst time into rt[]
-        for (int i = 0; i < n; i++)
-            rt[i] = proc[i].bt;
+         for (i=0;i<n;i++)
+         {
+             pid[i] = i+1;
+             k[i]= bt[i];
+             f[i]= 0;
+         }
 
-        int complete = 0, t = 0, minm = Integer.MAX_VALUE;
-        int shortest = 0, finish_time;
-        boolean check = false;
+         while(true){
+             int min=99,c=n;
+             if (tot==n)
+                 break;
 
-        // Process until all processes gets
-        // completed
-        while (complete != n) {
+             for ( i=0;i<n;i++)
+             {
+                 if ((at[i]<=st) && (f[i]==0) && (bt[i]<min))
+                 {
+                     min=bt[i];
+                     c=i;
+                 }
+             }
 
-            // Find process with minimum
-            // remaining time among the
-            // processes that arrives till the
-            // current time`
-            for (int j = 0; j < n; j++)
-            {
-                if ((proc[j].art <= t) &&
-                        (rt[j] < minm) && rt[j] > 0) {
-                    minm = rt[j];
-                    shortest = j;
-                    check = true;
-                }
-            }
+             if (c==n)
+                 st++;
+             else
+             {
+                 bt[c]--;
+                 st++;
+                 if (bt[c]==0)
+                 {
+                     ct[c]= st;
+                     f[c]=1;
+                     tot++;
+                 }
+             }
+         }
 
-            if (check == false) {
-                t++;
-                continue;
-            }
+         for(i=0;i<n;i++)
+         {
+             ta[i] = ct[i] - at[i];
+             wt[i] = ta[i] - k[i];
+             avgwt+= wt[i];
+             avgta+= ta[i];
+         }
 
-            // Reduce remaining time by one
-            rt[shortest]--;
+         return ct;
+     }
+     public int[] waitingTime(int[] at,int[] bt)
+     {
+         int n = at.length;
+         int[] pid = new int[n];
+         int ct[] = new int[n]; // ct means complete time
+         int ta[] = new int[n];// ta means turn around time
+         int wt[] = new int[n];  // wt means waiting time
+         int f[] = new int[n];  // f means it is flag it checks process is completed or not
+         int k[]= new int[n];   // it is also stores brust time
+         int i, st=0, tot=0;
+         float avgwt=0, avgta=0;
 
-            // Update minimum
-            minm = rt[shortest];
-            if (minm == 0)
-                minm = Integer.MAX_VALUE;
+         for (i=0;i<n;i++)
+         {
+             pid[i] = i+1;
+             k[i]= bt[i];
+             f[i]= 0;
+         }
 
-            // If a process gets completely
-            // executed
-            if (rt[shortest] == 0) {
+         while(true){
+             int min=99,c=n;
+             if (tot==n)
+                 break;
 
-                // Increment complete
-                complete++;
-                check = false;
+             for ( i=0;i<n;i++)
+             {
+                 if ((at[i]<=st) && (f[i]==0) && (bt[i]<min))
+                 {
+                     min=bt[i];
+                     c=i;
+                 }
+             }
 
-                // Find finish time of current
-                // process
-                finish_time = t + 1;
+             if (c==n)
+                 st++;
+             else
+             {
+                 bt[c]--;
+                 st++;
+                 if (bt[c]==0)
+                 {
+                     ct[c]= st;
+                     f[c]=1;
+                     tot++;
+                 }
+             }
+         }
 
-                // Calculate waiting time
-                wt[shortest] = finish_time -
-                        proc[shortest].bt -
-                        proc[shortest].art;
+         for(i=0;i<n;i++)
+         {
+             ta[i] = ct[i] - at[i];
+             wt[i] = ta[i] - k[i];
+             avgwt+= wt[i];
+             avgta+= ta[i];
+         }
 
-                if (wt[shortest] < 0)
-                    wt[shortest] = 0;
-            }
-            // Increment time
-            t++;
-        }
+         return wt;
+     }
+     public int[] turnaroundTime(int[] at,int[] bt)
+     {
+         int n = at.length;
+         int[] pid = new int[n];
+         int ct[] = new int[n]; // ct means complete time
+         int ta[] = new int[n];// ta means turn around time
+         int wt[] = new int[n];  // wt means waiting time
+         int f[] = new int[n];  // f means it is flag it checks process is completed or not
+         int k[]= new int[n];   // it is also stores brust time
+         int i, st=0, tot=0;
+         float avgwt=0, avgta=0;
+
+         for (i=0;i<n;i++)
+         {
+             pid[i] = i+1;
+             k[i]= bt[i];
+             f[i]= 0;
+         }
+
+         while(true){
+             int min=99,c=n;
+             if (tot==n)
+                 break;
+
+             for ( i=0;i<n;i++)
+             {
+                 if ((at[i]<=st) && (f[i]==0) && (bt[i]<min))
+                 {
+                     min=bt[i];
+                     c=i;
+                 }
+             }
+
+             if (c==n)
+                 st++;
+             else
+             {
+                 bt[c]--;
+                 st++;
+                 if (bt[c]==0)
+                 {
+                     ct[c]= st;
+                     f[c]=1;
+                     tot++;
+                 }
+             }
+         }
+
+         for(i=0;i<n;i++)
+         {
+             ta[i] = ct[i] - at[i];
+             wt[i] = ta[i] - k[i];
+             avgwt+= wt[i];
+             avgta+= ta[i];
+         }
+
+
+         return ta;
+     }
     }
 
-    // Method to calculate turn around time
-    static void findTurnAroundTime(Process proc[], int n,
-                                   int wt[], int tat[])
-    {
-        // calculating turnaround time by adding
-        // bt[i] + wt[i]
-        for (int i = 0; i < n; i++)
-            tat[i] = proc[i].bt + wt[i];
-    }
-
-    // Method to calculate average time
-    static void findavgTime(Process proc[], int n)
-    {
-        int wt[] = new int[n], tat[] = new int[n];
-        int total_wt = 0, total_tat = 0;
-
-        // Function to find waiting time of all
-        // processes
-        findWaitingTime(proc, n, wt);
-
-        // Function to find turn around time for
-        // all processes
-        findTurnAroundTime(proc, n, wt, tat);
-
-        // Display processes along with all
-        // details
-        System.out.println("Processes " +
-                " Burst time " +
-                " Waiting time " +
-                " Turn around time");
-
-        // Calculate total waiting time and
-        // total turnaround time
-        for (int i = 0; i < n; i++) {
-            total_wt = total_wt + wt[i];
-            total_tat = total_tat + tat[i];
-            System.out.println(" " + proc[i].pid + "\t\t"
-                    + proc[i].bt + "\t\t " + wt[i]
-                    + "\t\t" + tat[i]);
-        }
-
-        System.out.println("Average waiting time = " +
-                (float)total_wt / (float)n);
-        System.out.println("Average turn around time = " +
-                (float)total_tat / (float)n);
-    }
-
-}
-}

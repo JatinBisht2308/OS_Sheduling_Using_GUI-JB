@@ -1,6 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 public class FinalFrame {
     FinalFrame(int index,String arrival,String burst)
     {
@@ -21,7 +18,7 @@ public class FinalFrame {
                 burstArray[i] = Integer.parseInt(burstStringArray[i]);
             }
 //        Calling fcfs class
-          FCFS fcfs = new FCFS(arrivalArray,burstArray);
+         new FCFS(arrivalArray,burstArray);
         }
         else if(index == 1) {//            converting the arrival string to arrival integer array - jatin bisht
             String[] arrivalStringArray = arrival.split(" ");
@@ -36,7 +33,7 @@ public class FinalFrame {
                 burstArray[i] = Integer.parseInt(burstStringArray[i]);
             }
 //            calling SJF-P
-            SJFP sjfp = new SJFP(arrivalArray,burstArray);
+            new SJFP(arrivalArray,burstArray);
         }
         else
         {
@@ -55,7 +52,7 @@ public class FinalFrame {
                 burstArray[i] = Integer.parseInt(burstStringArray[i]);
             }
 //        Calling SJFNP class
-            SJFNP sjfnp = new SJFNP(arrivalArray,burstArray);
+            new SJFNP(arrivalArray,burstArray);
         }
     }
 }
